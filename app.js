@@ -95,7 +95,6 @@ document.getElementById("blue").onclick = () => {
 ///////// scrolling ////////////
 const options = {
     threshold:0.3, //// 60% of section
-    roptMargin: "79px 0 0 0"
 }
 
 const observer = new IntersectionObserver((entries) => {

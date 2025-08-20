@@ -158,6 +158,10 @@ section.landing {
     text-align: center;
     background-color: var(--bgc-color);
     color: var(--text-color);
+    /* background-image: url("./images/landing3.jpeg");
+    background-size: cover;
+    background-position: center; */
+
 }
 section.landing h1 {
     font-size: 4rem;
@@ -419,10 +423,11 @@ section.features {
 .contact-wrapper .info > div {
     padding: 15px;
     border-radius: var(--border-10);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     box-shadow: var(--shadow);
     h5 {
-        margin-bottom: 7px;
+        font-size: 12px;
+        color: var(--main-color);
     }
     h4 {
         letter-spacing: 1.3px;
@@ -432,15 +437,15 @@ section.features {
     margin-bottom: 0;
 }
 .contact-wrapper .info > h4 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-.contact-wrapper .info > i {
-    display: inline-block;
-    margin-right: 10px;
-    font-weight: bold;
-    border: 1px solid #666;
-    padding: 10px;
-    border-radius: var(--border-5);
+.contact-wrapper .info  div {
+    display: flex;
+    gap: 10px;
+}
+.contact-wrapper .info  i {
+    font-size: 1.4rem;
+    margin-right: 20px;
 }
 .contact-wrapper .form  form{
     display: flex;
@@ -468,7 +473,7 @@ section.features {
 .contact-wrapper form input:focus,
 .contact-wrapper form textarea:focus {
     outline: none;
-    border-bottom: 2px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
 }
 .contact-wrapper form textarea {
     resize: none;

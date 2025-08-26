@@ -17,11 +17,13 @@
     --text-color:#000106;
     --shadow: 0 0 7px rgba(0,0,0,.1);
 }
+/* Dark / Light theme */
 .dark-mode {
     --bgc-color:#000106;
     --text-color:#fff; 
     --shadow: 0 0 7px rgba(255,255,255, .1) ;
 }
+/* Colors */
 #betrroly {
     background-color: #007b83;
 }
@@ -55,6 +57,7 @@ p {
 i {
     margin-right: 10px;
 }
+/* borgar menu */
 .borgar-icon {
     display: flex;
     gap: 20px;
@@ -153,15 +156,48 @@ header img {
 section.landing {
     height: 100vh;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: var(--bgc-color);
     color: var(--text-color);
-    /* background-image: url("./images/landing3.jpeg");
-    background-size: cover;
-    background-position: center; */
-
+}
+section.landing > div {
+    flex: 50%;
+}
+/* landing img */
+section.landing > .img {
+    position: relative;
+    height: 400px;
+    transform: translate(1px);
+}
+section.landing > .img::before ,
+section.landing > .img::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    z-index: -1;
+    transition: 2s;
+    left: 50%;
+    transform: translateX(-50%);
+}
+section.landing > .img::before {
+    width: 250px;
+    height: 250px;
+    top: 0;
+}
+section.landing > .img::after {
+    width: 280px;
+    height: 280px;
+    top: 30%;
+}
+section.landing > .img:hover::before {
+    left: 55%;
+}
+section.landing > .img:hover::after {
+    left: 45%;
 }
 section.landing h1 {
     font-size: 4rem;
@@ -207,7 +243,6 @@ section.landing .colors  span {
     height: 20px;
     border-radius: 50%;
     margin-left: 10px;
-    /* background-color: var(--text-color); */
 }
 
 /* about */
@@ -421,13 +456,15 @@ section.features {
     margin: 1.5rem 0;
 }
 .contact-wrapper .info > div {
-    padding: 15px;
+    padding: 15px 0;
     border-radius: var(--border-10);
     margin-bottom: 30px;
     box-shadow: var(--shadow);
     h5 {
         font-size: 12px;
         color: var(--main-color);
+        margin: 0;
+        padding: 0;
     }
     h4 {
         letter-spacing: 1.3px;
@@ -513,6 +550,7 @@ footer p:last-child {
 }
 
 /* media queries */
+/* small screen */
 @media (max-width:767px) {
     header {
         padding:15px 25px;
@@ -531,6 +569,9 @@ footer p:last-child {
         background-color: var(--bgc-color);
         color: var(--text-color);
         padding: 20px;
+        display: none;
+    }
+    .landing .img {
         display: none;
     }
     ul.sm-sc {
@@ -557,6 +598,7 @@ footer p:last-child {
         padding: 20px
     }
 }
+/* small mobile screens */
 @media (max-width:525px) {
     footer {
         padding: 15px;
@@ -568,6 +610,7 @@ footer p:last-child {
         font-size: .8rem;
     }
 }
+/* small mobile screens */
 @media (max-width:415px) {
     footer {
         padding: 10px;

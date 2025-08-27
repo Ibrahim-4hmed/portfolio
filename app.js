@@ -33,7 +33,7 @@ icon.onclick = () => {
     }
 }
 
-//////////// Menu /////////////
+//////////// Borgar Menu /////////////
 
 document.body.addEventListener("click", (e) => {
     if (e.target.className === "borgar"){
@@ -94,7 +94,7 @@ document.getElementById("blue").onclick = () => {
 
 ///////// scrolling ////////////
 const options = {
-    threshold:0.3, //// 60% of section
+    threshold:0.3, //// 30% of section
 }
 
 const observer = new IntersectionObserver((entries) => {

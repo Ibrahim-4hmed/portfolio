@@ -114,3 +114,40 @@ const observer = new IntersectionObserver((entries) => {
 }, options)
 
 sections.forEach(section => observer.observe(section));
+
+
+//form
+const myForm = document.getElementById('my-form');
+
+//popup
+const popup = document.getElementById('sent')
+
+myForm.addEventListener('submit', async function(e) {
+    e.preventDefault(); // Stop page from refreshing
+    
+    // 1. Capture the data from the form
+    const formData = new FormData(this);
+
+    // 2. Send the data to Formspree using fetch
+    try {
+        const response = await fetch("https://formspree.io/f/xaqylwag", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // 3. Success! Reset the form
+            alert("Thanks for your message!");
+            myForm.reset();
+        } else {
+            // Handle server-side errors (e.g., validation issues)
+            alert("Oops! There was a problem submitting your form");
+        }
+    } catch (error) {
+        // Handle network errors
+        alert("Error: Could not connect to the server.");
+    }
+});

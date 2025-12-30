@@ -116,11 +116,8 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => observer.observe(section));
 
 
-//form
+//form sumbition
 const myForm = document.getElementById('my-form');
-
-//popup
-const popup = document.getElementById('sent')
 
 myForm.addEventListener('submit', async function(e) {
     e.preventDefault(); // Stop page from refreshing
@@ -139,12 +136,20 @@ myForm.addEventListener('submit', async function(e) {
         });
 
         if (response.ok) {
-            // 3. Success! Reset the form
-            alert("Thanks for your message!");
-            myForm.reset();
+            Swal.fire({
+            icon: "success",
+            title: "Message Sent!",
+            text: "We will contact you soon.",
+            confirmButtonColor: "#3085d6"
+            });
+
+            this.reset();
         } else {
-            // Handle server-side errors (e.g., validation issues)
-            alert("Oops! There was a problem submitting your form");
+            Swal.fire({
+            icon: "error",
+            title: "Failed!",
+            text: "Please try again later."
+            });
         }
     } catch (error) {
         // Handle network errors

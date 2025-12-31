@@ -355,6 +355,7 @@ section.features {
     background-color: var(--bgc-color);
     overflow: hidden;
     transition: var(--transition-3);
+    height: fit-content;
 }
 .wrapper .box:hover {
     transform: translateY(-2%);

@@ -100,6 +100,7 @@ const options = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting){
+            //links
             links.forEach(link => link.classList.remove("active"))
 
             const id = entry.target.getAttribute("id");
@@ -114,6 +115,24 @@ const observer = new IntersectionObserver((entries) => {
 }, options)
 
 sections.forEach(section => observer.observe(section));
+
+//whatch the entier page 
+const observerPage = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        // optional (animate once)
+        observerPage.unobserve(entry.target); 
+      }
+    });
+  },
+  {
+    threshold: 0.2
+  }
+);
+
+sections.forEach(section => observerPage.observe(section));
 
 
 //form sumbition

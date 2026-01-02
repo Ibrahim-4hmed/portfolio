@@ -170,6 +170,24 @@ header .mode {
 header img {
     width: 100%;
 }
+/* watch the page */
+main > section {
+    opacity: 0;
+    transform: translateX(0);
+    transition: all 0.8s ease-out;
+}
+main > section.from-left {
+  transform: translateX(-100px);
+}
+
+main section.from-right {
+  transform: translateX(100px);
+}
+
+main > section.show {
+  opacity: 1;
+  transform: translateX(0);
+}
 
 /* landing */
 section.landing {
@@ -181,6 +199,13 @@ section.landing {
     text-align: center;
     background-color: var(--bgc-color);
     color: var(--text-color);
+
+    /* Background image settings */
+    background-image: url("./images/landing-sec.png"); /* Replace with your image path */
+    background-size: cover;   /* Cover the entire section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-attachment: fixed; /* Optional: makes background fixed on scroll */
 }
 section.landing > div {
     flex: 50%;
@@ -191,34 +216,21 @@ section.landing > .img {
     height: 400px;
     transform: translate(1px);
 }
-section.landing > .img::before ,
-section.landing > .img::after {
+section.landing > .img::before {
     content: "";
     position: absolute;
-    border-radius: 50%;
+    border-radius: 10%;
     background-color: var(--main-color);
     z-index: -1;
     transition: 2s;
     left: 50%;
-    transform: translateX(-50%);
-}
-section.landing > .img::before {
+    top: 50%;
+    transform: translate(-50%,-50%);
     width: 250px;
     height: 250px;
-    top: 0;
-}
-section.landing > .img::after {
-    width: 280px;
-    height: 280px;
-    top: 30%;
-}
-section.landing > .img:hover::before {
-    left: 55%;
-}
-section.landing > .img:hover::after {
-    left: 45%;
 }
 section.landing h1 {
+    color: #fff;
     font-size: 4rem;
     font-weight: bold;
     span {
@@ -227,8 +239,8 @@ section.landing h1 {
 }
 section.landing p {
     margin: 20px 0;
-    font-size: 1rem;
-    color: var(--text-color);
+    font-size: 1.2rem;
+    color: #fff;
 }
 section.landing a.view {
     display: inline-block;
@@ -246,7 +258,7 @@ section.landing a.view:hover {
     background-color: var(--scond-color);
 }
 section.landing a {
-    color: var(--text-color);
+    color: #fff;
     margin-right: 10px;
     font-size: 1.5rem;
     cursor: pointer;

@@ -1,7 +1,7 @@
 //variables
 const icon = document.getElementById("icon");
-const borgar = document.querySelector(".borgar");
-const ulNav = document.getElementById("small-screen");
+const menu = document.getElementById("menu");
+const ulNav = document.getElementById("ul-list");
 const links = document.querySelectorAll(".nav-links a");
 const root = document.documentElement;
 const colorDiv = document.querySelectorAll(".colors span");
@@ -34,16 +34,15 @@ icon.onclick = () => {
 }
 
 //////////// Borgar Menu /////////////
-
-document.body.addEventListener("click", (e) => {
-    if (e.target.className === "borgar"){
-        ulNav.classList.toggle("sm-sc")
-    } else {
-        if (ulNav.classList.contains("sm-sc"))
-            ulNav.classList.toggle("sm-sc")
+menu.onclick = () => {
+    ulNav.classList.toggle("sm-sc")
+} 
+//close the menu when click outside
+document.addEventListener("click", (e) => {
+    if (e.target !== menu && e.target !== ulNav && ulNav.classList.contains("sm-sc")){
+        ulNav.classList.remove("sm-sc")
     }
 })
-
 
 links.forEach(link => {
     link.addEventListener("click", (e) => {
@@ -94,7 +93,7 @@ document.getElementById("blue").onclick = () => {
 
 ///////// scrolling ////////////
 const options = {
-    threshold:0.3, //// 30% of section
+    threshold:0.4, //// 30% of section
 }
 
 const observer = new IntersectionObserver((entries) => {
@@ -175,3 +174,26 @@ myForm.addEventListener('submit', async function(e) {
         alert("Error: Could not connect to the server.");
     }
 });
+
+// Typewriter effect
+  const text = "It's not magic, it's computer science";
+  const speed = 100;
+  let index = 0;
+
+  const element = document.getElementById("typewriter");
+  element.classList.add("cursor");
+
+  function type() {
+    if (index <= text.length) {
+      element.textContent = text.slice(0, index);
+      index++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => {
+        index = 0;
+        element.textContent = "";
+        type();
+      }, 2000);
+    }
+  }
+  type();

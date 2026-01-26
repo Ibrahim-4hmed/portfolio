@@ -15,13 +15,25 @@
     --section-bgc: #f9f9f9;
     --bgc-color:#fff;
     --text-color:#000106;
-    --shadow: 0 0 7px rgba(0,0,0,.1);
+    --shadow:0 10px 30px rgba(0, 0, 0, 0.06);
+    --border-shadow: 1px solid rgba(0, 0, 0, 0.05);
+}
+/* writing */
+.cursor::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
 /* Dark / Light theme */
 .dark-mode {
     --bgc-color:#000106;
     --text-color:#fff; 
-    --shadow: 0 0 7px rgba(255,255,255, .1) ;
+    --shadow: 0 10px 30px rgba(255, 255, 255, 0.06);
+    --border-shadow: 1px solid rgba(255, 255, 255, 0.05);
 }
 /* Colors */
 #betrroly {
@@ -58,27 +70,15 @@ i {
     margin-right: 10px;
 }
 /* borgar menu */
-.borgar-icon {
+.icons {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
-.borgar {
-    width: 20px;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    align-items: flex-end;
-    opacity: 0;
-}
-.borgar span {
-    width: 100%;
-    height: 2px;
-    margin-bottom: 3px;
-    background-color: var(--text-color);
-}
-.borgar span:nth-child(2) {
-    width: 70%;
+.borgar i {
+    font-weight: bold;
+    font-size: 20px;
+    display: none;
 }
 .espcial-heading {
     text-align: center;
@@ -133,11 +133,11 @@ header {
     background-color: var(--bgc-color);
     color: var(--text-color);
 }
-header h1 {
+header h1 a {
     font-size: 1.8rem;
     color: var(--main-color);
-    font-weight: 900;
-    cursor: pointer;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 header  ul {
     display: flex;
@@ -149,8 +149,9 @@ header  ul li {
 }
 header  ul li a {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: bold;
     color: var(--text-color);
+    text-transform: uppercase;
     transition: var(--transition-3);
 }
 header  ul li:hover {
@@ -158,7 +159,6 @@ header  ul li:hover {
 }
 header ul li:hover a {
     color: var(--main-color);
-    font-size: 1.005rem;
 }
 header  ul li a.active {
     color: var(--main-color);
@@ -172,22 +172,18 @@ header img {
 }
 /* watch the page */
 main > section {
-    opacity: 0;
-    transform: translateX(0);
-    transition: all 0.8s ease-out;
-}
-main > section.from-left {
-  transform: translateX(-100px);
-}
-
-main section.from-right {
-  transform: translateX(100px);
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 main > section.show {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
+
 
 /* landing */
 section.landing {
@@ -199,13 +195,6 @@ section.landing {
     text-align: center;
     background-color: var(--bgc-color);
     color: var(--text-color);
-
-    /* Background image settings */
-    background-image: url("./images/landing-sec.png"); /* Replace with your image path */
-    background-size: cover;   /* Cover the entire section */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent repeating */
-    background-attachment: fixed; /* Optional: makes background fixed on scroll */
 }
 section.landing > div {
     flex: 50%;
@@ -230,7 +219,7 @@ section.landing > .img::before {
     height: 250px;
 }
 section.landing h1 {
-    color: #fff;
+    color: var(--text-color);
     font-size: 4rem;
     font-weight: bold;
     span {
@@ -240,7 +229,7 @@ section.landing h1 {
 section.landing p {
     margin: 20px 0;
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--text-color);
 }
 section.landing a.view {
     display: inline-block;
@@ -258,7 +247,7 @@ section.landing a.view:hover {
     background-color: var(--scond-color);
 }
 section.landing a {
-    color: #fff;
+    color: var(--text-color);
     margin-right: 10px;
     font-size: 1.5rem;
     cursor: pointer;
@@ -289,8 +278,7 @@ section.about {
     flex: 1;
 } 
 .about-container .journey {
-    padding: 20px;
-    box-shadow: var(--shadow);
+    padding: 20px 0;
 }
 .about-container .journey h3 {
     margin-bottom: 25px;
@@ -311,6 +299,7 @@ section.about {
     padding: 10px 20px;
     background-color: var(--bgc-color);
     box-shadow: var(--shadow);
+    border: var(--border-shadow);
     border-radius: var(--border-5);
     position: relative;
     overflow: hidden;
@@ -362,9 +351,10 @@ section.features {
     gap: 20px;
 }
 .wrapper .box {
-    border-radius: var(--border-10);
-    box-shadow: var(--shadow);
+    border-radius: var(--border-5);
     background-color: var(--bgc-color);
+    box-shadow: var(--shadow);
+    border: var(--border-shadow);
     overflow: hidden;
     transition: var(--transition-3);
     height: fit-content;
@@ -375,12 +365,19 @@ section.features {
 .wrapper .box img {
     width: 100%;
     height: 200px;
+    filter: grayscale(100%);
+    transition: var(--transition-3);
+}
+.wrapper .box:hover img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
 }
 .wrapper .box .text {
     padding:  20px;
     h3 {
         font-size: 1.3rem;
         font-weight: 600;
+        color: var(--main-color);
     }
     p {
         margin: 15px 0;
@@ -607,9 +604,12 @@ footer p:last-child {
         display: flex;
         flex-direction: column;
         position: fixed;
-        right: 60px;
-        top: 50px;
+        right: 0;
+        top: 63px;
+        width: 100%;
+        text-align: center;
         box-shadow: var(--shadow);
+        border-bottom: 1px solid var(--main-color);
         border-radius: var(--border-10);
         background-color: var(--bgc-color);
         color: var(--text-color);
@@ -622,25 +622,14 @@ footer p:last-child {
     ul.sm-sc {
         display: block;
     }
-    header  nav  ul::before {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: -12px;
-        border: 10px solid;
-        border-color: var(--text-color) var(--bgc-color)  var(--bgc-color)  var(--bgc-color);
-    }
-    .borgar {
-        opacity: 1;
+    .borgar i {
+        display: block;
     }
     header .mode {
         width: 15px;
     }
     .about-container, .contact-wrapper {
         flex-direction: column;
-    }
-    .sec-padding {
-        padding: 20px
     }
 }
 /* small mobile screens */
@@ -658,7 +647,7 @@ footer p:last-child {
 /* small mobile screens */
 @media (max-width:415px) {
     .sec-padding {
-        padding: 5px;
+        padding: var(--section-p-y) 20px;
     }
     footer {
         padding: 10px;
